@@ -1,0 +1,7 @@
+Запуск сервера
+php -S localhost:8080 -t public
+php artisan serve
+
+
+форкнуть файл
+php artisan vendor:publish --provider="Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider" --tag=config
