@@ -1,0 +1,10 @@
+FROM php:7.4.0-fpm
+
+RUN apt-get update && apt-get install -y libmcrypt-dev mariadb-client wget unzip \
+    && docker-php-ext-install pdo_mysql \
+    && pecl install mcrypt \
+    && docker-php-ext-enable mcrypt \
+    && pecl install redis \
+    && docker-php-ext-enable redis.so
+
+WORKDIR /var/www
