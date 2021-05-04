@@ -5,6 +5,10 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+if (!defined('JSON_INVALID_UTF8_SUBSTITUTE')) {
+    define('JSON_INVALID_UTF8_SUBSTITUTE', 0);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Check If Application Is Under Maintenance

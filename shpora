@@ -1,7 +1,23 @@
+composer dump-autoload
+
+
 Запуск сервера
 php -S localhost:8080 -t public
 php artisan serve
 
 
+docker exec laravel_php_1 vendor/bin/phpunit
+
+docker-compose exec laravel_php vendor/bin/phpunit
+
+
 форкнуть файл
 php artisan vendor:publish --provider="Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider" --tag=config
+
+
+генерация писем
+php artisan make:mail -m -- Auth\\VerifyMail
+
+
+
+

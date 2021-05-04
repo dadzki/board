@@ -5,6 +5,10 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+if (!defined('JSON_INVALID_UTF8_SUBSTITUTE')) {
+    define('JSON_INVALID_UTF8_SUBSTITUTE', 0);
+}
+
 class Kernel extends ConsoleKernel
 {
     /**
