@@ -31,6 +31,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'verify_token' => $active ? null : Str::uuid(),
             'status' => $active ? User::STATUS_ACTIVE : User::STATUS_WAIT,
+            'role' => $active ? $this->faker->randomElement([User::ROLE_USER, User::ROLE_ADMIN]) : User::ROLE_USER,
         ];
     }
 }
