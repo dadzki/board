@@ -23,3 +23,8 @@ php artisan make:mail -m -- Auth\\VerifyMail
 tinker из database/factories/UserFactory.php
 
 $user = factory(\App\Entity\User::class)->make(['status' => 'wait'])
+
+
+
+для подключения иконок   -s для добавления в package.json
+docker-compose exec node yarn add -s font-awesome
