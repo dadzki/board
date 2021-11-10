@@ -20,6 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/login/phone', 'Auth\LoginController@phone')->name('login.phone');
+Route::post('/login/phone', 'Auth\LoginController@verify');
+
 Route::get('/verify/{token}', 'Auth\RegisterController@verify')->name('register.verify');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -33,9 +36,16 @@ Route::group(
     ],
     function () {
         Route::get('/', 'HomeController@index')->name('home');
-        Route::get('/profile', 'ProfileController@index')->name('profile.home');
-        Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
-        Route::put('/profile/update', 'ProfileController@update')->name('profile.update');
+        Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+            Route::get('/', 'ProfileController@index')->name('home');
+            Route::get('/edit', 'ProfileController@edit')->name('edit');
+            Route::put('/update', 'ProfileController@update')->name('update');
+            Route::post('/phone', 'PhoneController@request');
+            Route::get('/phone', 'PhoneController@form')->name('phone');
+            Route::put('/phone', 'PhoneController@verify')->name('phone.verify');
+
+            Route::post('/phone/auth', 'PhoneController@auth')->name('phone.auth');
+        });
     }
 );
 
@@ -64,5 +74,7 @@ Route::group(
                 Route::resource('attributes', 'AttributeController')->except('index');
             });
         });
+
+        Route::resource('adverts', 'Adverts\AdvertController');
     }
 );
